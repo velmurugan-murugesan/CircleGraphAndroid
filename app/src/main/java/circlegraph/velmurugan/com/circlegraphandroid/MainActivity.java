@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements GraphClickListene
 
     circleGraphView.setselectedItem(2);
 
-    //circleGraphView.setCircleRadius(320);
-
     circleItemsList.clear();
     CircleItems circleItem = new CircleItems("name 1",20, Color.RED);
     circleItemsList.add(circleItem);
