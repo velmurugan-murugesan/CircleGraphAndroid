@@ -80,6 +80,12 @@ public class CircleGraphView extends View {
   //default Circle Size
   int circleSize = 180;
 
+  //half Circle Size
+  int HALF_CIRCLE_SIZE = 180;
+
+  // Default Full Circle Size
+  int FULL_CIRCLE_SIZE = 360;
+
   //Code For Touch Listener
   private Map<String,List<PointF>> maps;
   PointF pointF = null;
@@ -103,16 +109,13 @@ public class CircleGraphView extends View {
     maps = new HashMap<>();
   }
 
-
-
   private void setupStartAngle(){
     if(circleSize == 180){
-      startAngle = 180;
+      startAngle = HALF_CIRCLE_SIZE;
     } else {
-      startAngle = 360;
+      startAngle = FULL_CIRCLE_SIZE;
     }
   }
-
 
   public float getStartAngle() {
     return startAngle;
@@ -125,6 +128,7 @@ public class CircleGraphView extends View {
     //Get canvas Width and Height
     canvasWidth = MeasureSpec.getSize(widthMeasureSpec);
     canvasHeight = MeasureSpec.getSize(heightMeasureSpec);
+
     pointF = new PointF(canvasWidth/2 ,canvasWidth/2);
     setupArcPaint();
     setupStartAngle();
@@ -147,7 +151,6 @@ public class CircleGraphView extends View {
       arcPaint.setColor(CircleItems.get(i).getColor());
       log("startAngle = "+startAngle);
       float sweepAngle = getSweepAngle(CircleItems.get(i).getPercentage());
-      //Log.d("getRectF() = ","Left = "+getRectF().left+" Right = "+getRectF().right+" Top = "+getRectF().top+" Bottom = "+getRectF().bottom);
 
       if(i == selectedItem){
         arcPaint.setStrokeWidth(getStrokeSize() + 30);
@@ -156,30 +159,17 @@ public class CircleGraphView extends View {
       }
       canvas.drawArc(getRectF(),startAngle,sweepAngle,false, arcPaint);
 
-      //float rectF = canvas.getClipBounds().exactCenterX();
-      //log("rect = "+rectF);
       if(textEnabled){
         addArcText(canvas,sweepAngle,i);
       }
 
-      Log.d("TEST","Radius = "+((canvasWidth/ 2) - (getStrokeSize()  /2)));
-      //Add Points to Map
-      Log.d("getRectF() = ",getRectF().toString());
-
-      Log.d("angle = ",(getRectF().right - getRectF().left) / 2 +"");
       List<PointF> pointFList = new ArrayList<>();
       for (int j = (int)startAngle;j<startAngle + sweepAngle ;j++){
-        //pointFList.add(getArcByPoint(pointF,((canvasWidth/ 2) - ((getStrokeSize() /2) + selectorBarSize)),j));
         pointFList.add(getArcByPoint(pointF,(getRectF().right - getRectF().left) / 2 ,j));
-
       }
+
       maps.put(CircleItems.get(i).getName(),pointFList);
       startAngle = startAngle + sweepAngle;
-
-     /* ViewGroup.LayoutParams params = getLayoutParams();
-      params.height = (int) getRectF().bottom;
-      params.width = LayoutParams.MATCH_PARENT;
-      setLayoutParams(params);*/
 
     }
   }
@@ -224,21 +214,13 @@ public class CircleGraphView extends View {
 
     return new PointF((float)(center.x + radius * cos(toRadians(angleDegrees))),
         (float)(center.y + radius * sin(toRadians(angleDegrees))));
-    /*return new PointF((float)(centerX + radius * cos(angleRadians)),
-        (float)(centerY + radius * sin(angleRadians)));*/
   }
 
   public void setRectF() {
 
-
     if(strokeSize > 0){
       padding = strokeSize / 2;
     }
-
-    Log.d("TEST","canvasWidth = "+canvasWidth);
-    Log.d("TEST","padding = "+padding);
-
-    Log.d("pointF = ",pointF+"'");
 
     if(circleRadius > 0){
       pointF = new PointF((float) ((circleRadius * 2) / 2) ,(float) ((circleRadius * 2) / 2));
@@ -265,8 +247,6 @@ public class CircleGraphView extends View {
     return textPaint;
   }
 
-
-
   public void setTextColor(int textColor) {
     this.textColor = textColor;
   }
@@ -291,18 +271,13 @@ public class CircleGraphView extends View {
     return textEnabled;
   }
 
-
   public void setCircleRadius(int circleRadius) {
     this.circleRadius = circleRadius;
-
-    //this.rectF.set(padding, padding, (circleRadius * 2) - padding, (circleRadius * 2)- padding);
-    //this.rectF.set(0, 0, 700, 700);
   }
 
   public float getCircleRadius() {
     return circleRadius;
   }
-
 
   public void setCircleType(CircleType circleType) {
     if(circleType.equals(CircleType.HALF_CIRCLE)){
@@ -316,14 +291,8 @@ public class CircleGraphView extends View {
     return circleType.toString();
   }
 
-
   float getSweepAngle(int value){
-    log("Value = "+value);
-    log("totalValue = "+totalValue);
     float currentInTotal = (float) value / (float) totalValue * 100 ;
-    log("currentInTotal = "+currentInTotal );
-    log("circleSize = "+circleSize);
-    log("currentInTotal * 180 / 100 = "+(currentInTotal * circleSize) / 100);
     return (currentInTotal * circleSize) / 100;
   }
 
@@ -355,18 +324,12 @@ public class CircleGraphView extends View {
 
     switch (event.getAction()){
       case MotionEvent.ACTION_DOWN:
-        log("Action Down");
-        log("x = "+event.getX());
-        log("y = "+event.getY());
         checkCliked(event.getX(),event.getY());
         break;
       case MotionEvent.ACTION_MOVE:
 
         break;
       case MotionEvent.ACTION_UP:
-        log("Action Up");
-        log("x = "+event.getX());
-        log("y = "+event.getY());
         break;
 
     }
@@ -378,21 +341,14 @@ public class CircleGraphView extends View {
     String cliked = null;
     for (Map.Entry<String,List<PointF>> entry : maps.entrySet()){
       List<PointF> pointFS = maps.get(entry.getKey());
-      Log.d("Maps = ",entry.getKey()+"");
       for (PointF pointF : pointFS){
-        Log.d("PointF ", "x = "+pointF.x +" y ="+pointF.y);
         float x1 = pointF.x + (getStrokeSize() / 2);
         float x2 = pointF.x - (getStrokeSize() / 2);
 
         float y1 = pointF.y + (getStrokeSize() / 2);
         float y2 = pointF.y - (getStrokeSize() / 2);
-        Log.d("TEST", "x1 = "+x1+"  X2 = "+x2);
-        Log.d("TEST", "y1 = "+y1+"  y2 = "+y2);
         if((x > x2 && x < x1) &&( y > y2 && y < y1 )){
-          //if( y < pointFS.get(0).y && x < pointFS.get(pointFS.size() - 1).x){
               cliked = entry.getKey();
-            //Log.d("GOT IT", name);
-          //}
         }
       }
 
