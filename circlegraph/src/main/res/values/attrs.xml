@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleGraphView" >
+      <attr name="stroke_size" format="integer" />
+      <attr name="view_padding" format="integer"/>
+      <attr name="text_enabled" format="boolean"/>
+      <attr name="text_color" format="color"/>
+      <attr name="text_size" format="dimension"/>
+
+      <attr name="circle_type" format="enum" >
+        <enum name="half_circle" value="180"></enum>
+        <enum name="full_circle" value="360"></enum>
+      </attr>
+
+    </declare-styleable>
+</resources>
