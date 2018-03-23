@@ -32,39 +32,30 @@ public class MainActivity extends AppCompatActivity implements GraphClickListene
     selectedItemTextView =(TextView) findViewById(R.id.selectedItem);
 
 
-    circleGraphView.setStrokeSize(50);
+    //circleGraphView.setStrokeSize(70);
 
-    circleGraphView.setTextEnabled(false);
+    circleGraphView.setTextEnabled(true);
 
     circleGraphView.setTextColor(Color.WHITE);
-    circleGraphView.setTextSize(30);
+    circleGraphView.setTextSize(40);
 
     circleGraphView.setCircleType(CircleType.HALF_CIRCLE);
 
     circleGraphView.setselectedItem(2);
 
     circleItemsList.clear();
-    CircleItems circleItem = new CircleItems("name 1",20, Color.RED);
+    CircleItems circleItem = new CircleItems("Tamil",50);
     circleItemsList.add(circleItem);
-    circleItem = new CircleItems("name 2",20,Color.BLUE);
-    circleItemsList.add(circleItem);
-
-    circleItem = new CircleItems("name 3",20);
+    circleItem = new CircleItems("English",30);
     circleItemsList.add(circleItem);
 
-    circleItem = new CircleItems("name 4",20);
+    circleItem = new CircleItems("Hindi",40);
     circleItemsList.add(circleItem);
 
-    circleItem = new CircleItems("name 5",20);
+    circleItem = new CircleItems("Malayalam",30);
     circleItemsList.add(circleItem);
 
-    circleItem = new CircleItems("name 6",20);
-    circleItemsList.add(circleItem);
-
-    circleItem = new CircleItems("name 7",20);
-    circleItemsList.add(circleItem);
-
-    circleItem = new CircleItems("name 8",20);
+    circleItem = new CircleItems("Telugu",20);
     circleItemsList.add(circleItem);
     circleGraphView.addItems(circleItemsList);
 

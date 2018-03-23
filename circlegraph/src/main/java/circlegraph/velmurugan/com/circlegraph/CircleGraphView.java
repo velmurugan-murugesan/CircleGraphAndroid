@@ -67,7 +67,7 @@ public class CircleGraphView extends View {
   private int textSize = 40;
 
   //default stroke size
-  int strokeSize = 50;
+  int strokeSize = 70;
 
   //Default Circle Start Angle
   private float startAngle = 180;
@@ -100,7 +100,7 @@ public class CircleGraphView extends View {
     textColor = typedArray.getColor(R.styleable.CircleGraphView_text_color,Color.BLACK);
     textSize = (int) typedArray.getDimension(R.styleable.CircleGraphView_text_size,40);
     textEnabled = typedArray.getBoolean(R.styleable.CircleGraphView_text_enabled, true);
-    strokeSize = typedArray.getInt(R.styleable.CircleGraphView_stroke_size, 50);
+    strokeSize = typedArray.getInt(R.styleable.CircleGraphView_stroke_size, 70);
     circleType = typedArray.getString(R.styleable.CircleGraphView_circle_type);
     typedArray.recycle();
 
@@ -302,6 +302,7 @@ public class CircleGraphView extends View {
     textPaint.setStyle(Style.FILL_AND_STROKE);
     textPaint.setColor(getTextColor());
     textPaint.setTextSize(getTextSize());
+    textPaint.setFakeBoldText(true);
     textPaint.setTextAlign(Align.CENTER);
   }
 

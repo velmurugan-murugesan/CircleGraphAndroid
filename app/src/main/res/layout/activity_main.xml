@@ -18,10 +18,8 @@
         <circlegraph.velmurugan.com.circlegraph.CircleGraphView
             android:id="@+id/graphView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            circlegraph:stroke_size="80"
+            android:layout_height="400dp"
+            android:layout_margin="10dp"
             circlegraph:text_enabled="true"
             circlegraph:text_size="20sp"
             android:layout_gravity="center_horizontal"
