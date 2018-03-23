@@ -12,8 +12,13 @@ CircleGraphAndroid library having two types of graph.
 
 ## Including in your project
 
-Add CircleGraph Library in your Project.
+Add CircleGraph Library in your Project app.gradle Dependencies.
 
+```
+dependencies {
+    compile project(':circlegraph')
+}
+```
 
 ## **How to Use**
 
