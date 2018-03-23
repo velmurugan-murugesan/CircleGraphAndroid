@@ -12,23 +12,8 @@ CircleGraphAndroid library having two types of graph.
 
 ## Including in your project
 
-### **Step 1. **Add the JitPack repository to your build file
+Add CircleGraph Library in your Project.
 
-Add it in your root build.gradle at the end of repositories:
-
-```
-    repositories {
-        ...
-            maven { url 'https://jitpack.io' }
-        }
-    }
-```
-
-### **Step 2. **Add the dependency
-
-```
-    compile 'com.github.velmurugan35:CircleGraphAndroid:-SNAPSHOT'
-```
 
 ## **How to Use**
 
