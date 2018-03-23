@@ -4,13 +4,11 @@ CircleGraphAndroid library having two types of graph.
 
 **1.Full Circle Graph**
 
-![](/assets/full circle graph sample.png)
-
-
+![](/screenshots/full circle graph sample.png)
 
 **2.Half Circle Graph**
 
-![](/assets/falf circle.png)
+![](/screenshots/half circle.png)
 
 # Including in your project
 
