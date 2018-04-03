@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements GraphClickListene
     circleGraphView = (CircleGraphView) findViewById(R.id.graphView);
     selectedItemTextView =(TextView) findViewById(R.id.selectedItem);
 
-
     //circleGraphView.setStrokeSize(70);
 
     circleGraphView.setTextEnabled(true);
@@ -61,11 +60,6 @@ public class MainActivity extends AppCompatActivity implements GraphClickListene
 
     selectedItemTextView.setText(circleItemsList.get(circleGraphView.getSelectedItem()).getName());
 
-  }
-
-  private int getRamdomColor(){
-    Random rnd = new Random();
-    return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
   }
 
   @Override
